@@ -8,7 +8,7 @@ exports.loginUser = async (req, res, next) => {
 
   //unless we use.select password won't come
   const user = await User.findOne({ phoneNumber }).select("+password");
-
+  console.log(user);
   // Check if user exists and password is correct
   if (!user || !(await user.correctPassword(password, user.password))) {
     return res.status(401).json({
@@ -27,6 +27,7 @@ exports.loginUser = async (req, res, next) => {
 };
 
 exports.registerUser = async (req, res, next) => {
+  console.log(req.body);
   const user = new User(req.body);
   try {
     await user.save();
@@ -93,33 +94,3 @@ exports.registerUser = async (req, res, next) => {
 //     message: "Email successfully verified!",
 //   });
 // };
-
-exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
-
-  // 1) Check if email and password exist
-  if (!email || !password) {
-    return res.status(400).json({
-      status: "Failed",
-      message: "Please provide email and password!",
-    });
-  }
-
-  // 2) Check if user exists and password is correct
-  const user = await User.findOne({ email }).select("+password");
-
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return res.status(401).json({
-      status: "Failed",
-      message: "Incorrect email or password",
-    });
-  }
-
-  // 3) If everything is ok, send token to client
-  // (You would typically generate a JWT token here)
-  res.status(200).json({
-    status: "Success",
-    message: "Login successful",
-    user,
-  });
-};

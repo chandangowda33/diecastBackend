@@ -2,25 +2,31 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  phoneNumber: {
     type: String,
-    required: [true, "Please tell us your name!"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please provide your email"],
+    required: [true, "A user must have a name"],
     unique: true,
-    lowercase: true,
+  },
+  fullName: {
+    type: String,
+    required: [true, "A user must have a name"],
   },
   password: {
     type: String,
-    required: [true, "Please provide a password"],
-    select: false, // Do not return the password field by default, only if we use .select it will give
+    required: [true, "A user must have a password"],
   },
+
   role: {
     type: String,
-    enum: ["user", "admin"],
+    enum: ["admin", "user"],
     default: "user",
+  },
+
+  address: {
+    type: String,
+  },
+  pincode: {
+    type: String,
   },
   passwordChangedAt: Date, // Add this field to track password changes
 });
