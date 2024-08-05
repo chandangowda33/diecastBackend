@@ -61,6 +61,7 @@ exports.registerUser = async (req, res, next) => {
     res.status(400).json({
       status: "Failed",
       message: "Something went wrong",
+      errorData: error,
     });
   }
 };
