@@ -18,9 +18,13 @@ const userSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    enum: ["admin", "user"],
+    enum: ["admin", "user", "seller"],
     default: "user",
   },
+
+  sellerMemberhipStarts: Date,
+  sellerMemberhipEnds: Date,
+  isMembershipActive: { type: Boolean, default: false },
 
   address: {
     type: String,
