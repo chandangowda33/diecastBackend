@@ -5,10 +5,9 @@ const itemSchema = new mongoose.Schema({
   modelBrand: String,
   vehicleBrand: String,
   itemScale: String,
-  itemPrice: String,
-  discountedPrice: String,
-  quantity: String,
-  discountedPrice: String,
+  itemPrice: Number,
+  discountedPrice: Number,
+  quantity: Number,
   itemImgURLS: [String],
 });
 

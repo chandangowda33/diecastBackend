@@ -1,7 +1,7 @@
 const Item = require("./../model/itemModel");
 
-exports.uploadItem = async (res, req, next) => {
-  console.log(req.body);
+exports.uploadItem = async (req, res, next) => {
+  // console.log(req.body);
   const item = new Item(req.body);
   try {
     await item.save();

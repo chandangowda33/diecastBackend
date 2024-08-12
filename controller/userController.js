@@ -3,7 +3,7 @@ const auth = require("././authController");
 const sendEmail = require("./../utils/email");
 
 exports.loginUser = async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { phoneNumber, password } = req.body;
 
   //unless we use.select password won't come
@@ -27,7 +27,7 @@ exports.loginUser = async (req, res, next) => {
 };
 
 exports.registerUser = async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const user = new User(req.body);
   try {
     await user.save();
