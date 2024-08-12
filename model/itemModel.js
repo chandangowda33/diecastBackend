@@ -9,7 +9,7 @@ const itemSchema = new mongoose.Schema({
   discountedPrice: String,
   quantity: String,
   discountedPrice: String,
-  itemImgURLS: [itemImgURLS],
+  itemImgURLS: [String],
 });
 
 const Item = mongoose.model("Item", itemSchema);
