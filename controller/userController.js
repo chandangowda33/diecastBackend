@@ -18,6 +18,7 @@ exports.loginUser = async (req, res, next) => {
   }
 
   const jwt = auth.createJWT(user._id);
+  console.log(jwt);
   res.status(200).json({
     status: "Success",
     message: "Login successful",
