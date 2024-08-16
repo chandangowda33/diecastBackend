@@ -9,6 +9,8 @@ const itemSchema = new mongoose.Schema({
   discountedPrice: Number,
   quantity: Number,
   itemImgURLS: [String],
+  dateCreated: Date,
+  seller: String,
 });
 
 const Item = mongoose.model("Item", itemSchema);

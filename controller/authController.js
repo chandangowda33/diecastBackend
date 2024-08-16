@@ -9,7 +9,7 @@ exports.createJWT = (id) => {
 
 exports.protect = async (req, res, next) => {
   let token;
-  console.log(req.headers.authorization);
+  // console.log(req.headers.authorization);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -27,9 +27,9 @@ exports.protect = async (req, res, next) => {
   try {
     console.log("inside try");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
     const currentUser = await User.findById(decoded.id);
-    console.log(currentUser);
+    // console.log(currentUser);
     if (!currentUser) {
       return res.status(401).json({
         status: "Failed",

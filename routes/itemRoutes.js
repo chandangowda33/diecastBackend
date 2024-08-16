@@ -8,4 +8,6 @@ router
   .route("/uploadItem")
   .post(authMiddleware.protect, itemController.uploadItem);
 
+router.route("/newArrivals").get(itemController.getItemList);
+
 module.exports = router;

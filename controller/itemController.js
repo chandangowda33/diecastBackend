@@ -1,8 +1,9 @@
 const Item = require("./../model/itemModel");
 
 exports.uploadItem = async (req, res, next) => {
-  // console.log(req.body);
   const item = new Item(req.body);
+  item.dateCreated = Date.now();
+  item.seller = req.user._id;
   try {
     await item.save();
 
@@ -14,6 +15,22 @@ exports.uploadItem = async (req, res, next) => {
     res.status(400).json({
       status: "Failed",
       message: "Something went wrong.",
+    });
+  }
+};
+
+exports.getItemList = async (req, res, next) => {
+  try {
+    const items = await Item.find().sort({ createdAt: -1 }).exec();
+
+    return res.status(200).json({
+      status: "Success",
+      items,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      status: "Failed",
+      message: "Something went wrong, please try again",
     });
   }
 };
