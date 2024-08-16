@@ -21,7 +21,7 @@ exports.uploadItem = async (req, res, next) => {
 
 exports.getItemList = async (req, res, next) => {
   try {
-    const items = await Item.find().sort({ createdAt: -1 }).exec();
+    const items = await Item.find().sort({ dateCreated: -1 }).exec();
 
     return res.status(200).json({
       status: "Success",
